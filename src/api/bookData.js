@@ -12,11 +12,17 @@ const getBooks = (uid) =>
       },
     })
       .then((response) => response.json())
-      .then((data) => resolve(Object.values(data)))
+      .then((data) => {
+        if (data) {
+          resolve(Object.values(data));
+        } else {
+          resolve([]);
+        }
+        // console.warn(data);
+      })
       .catch(reject);
   });
 
-// TODO: DELETE BOOK
 const deleteBook = (firebaseKey) =>
   new Promise((resolve, reject) => {
     fetch(`${endpoint}/books/${firebaseKey}.json`, {
@@ -25,12 +31,11 @@ const deleteBook = (firebaseKey) =>
         'Content-Type': 'application/json',
       },
     })
-      .then((response) => response.json())
+      .then((response) => response.json)
       .then((data) => resolve(data))
       .catch(reject);
   });
 
-// TODO: GET SINGLE BOOK
 const getSingleBook = (firebaseKey) =>
   new Promise((resolve, reject) => {
     fetch(`${endpoint}/books/${firebaseKey}.json`, {
@@ -44,7 +49,6 @@ const getSingleBook = (firebaseKey) =>
       .catch(reject);
   });
 
-// TODO: CREATE BOOK
 const createBook = (payload) =>
   new Promise((resolve, reject) => {
     fetch(`${endpoint}/books.json`, {
@@ -59,7 +63,6 @@ const createBook = (payload) =>
       .catch(reject);
   });
 
-// TODO: UPDATE BOOK
 const updateBook = (payload) =>
   new Promise((resolve, reject) => {
     fetch(`${endpoint}/books/${payload.firebaseKey}.json`, {
@@ -70,26 +73,13 @@ const updateBook = (payload) =>
       body: JSON.stringify(payload),
     })
       .then((response) => response.json())
-      .then((data) => resolve(data))
+      .then(resolve)
       .catch(reject);
   });
 
-const getBooksByAuthor = (firebaseKey) =>
+const booksOnSale = () =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/books.json?orderBy="author_id"&equalTo="${firebaseKey}"`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => resolve(Object.values(data)))
-      .catch(reject);
-  });
-
-const booksOnSale = (uid) =>
-  new Promise((resolve, reject) => {
-    fetch(`${endpoint}/books.json?orderBy="uid"&equalTo="${uid}"`, {
+    fetch(`${endpoint}/books.json?orderBy="sale"&equalTo=true`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -97,10 +87,30 @@ const booksOnSale = (uid) =>
     })
       .then((response) => response.json())
       .then((data) => {
-        const onSale = Object.values(data).filter((item) => item.sale);
-        resolve(onSale);
+        resolve(Object.values(data));
+        // console.warn(data);
       })
       .catch(reject);
   });
 
-export { getBooks, createBook, booksOnSale, deleteBook, getSingleBook, updateBook, getBooksByAuthor };
+const searchBooks = () =>
+  new Promise((resolve, reject) => {
+    fetch(`${endpoint}/books.json?orderBy="title"`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          console.warn(data);
+          resolve(Object.values(data));
+        } else {
+          resolve([]);
+        }
+      })
+      .catch(reject);
+  });
+
+export { getBooks, createBook, booksOnSale, deleteBook, getSingleBook, updateBook, searchBooks };
