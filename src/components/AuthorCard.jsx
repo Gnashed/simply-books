@@ -4,15 +4,21 @@ import PropTypes from 'prop-types';
 
 export default function AuthorCard({ authorObj }) {
   return (
-    <Card>
-      <Card.Header as="h5">Card Header</Card.Header>
+    <Card
+      style={{
+        width: '20rem',
+        height: 'auto',
+      }}
+    >
       <Card.Body>
         <Card.Title>
           {authorObj.first_name} {authorObj.last_name}
         </Card.Title>
         <hr />
         <Card.Text>{authorObj.email}</Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Button variant="success">View</Button>
+        <Button variant="primary">Edit</Button>
+        <Button variant="danger">Delete</Button>
       </Card.Body>
     </Card>
   );
