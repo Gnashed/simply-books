@@ -18,8 +18,14 @@ export default function NavBar() {
             <Link className="nav-link" href="/">
               Books
             </Link>
+            <Link className="nav-link" href="/books/sale" passHref>
+              Books on Sale
+            </Link>
             <Link className="nav-link" href="/authors">
               Authors
+            </Link>
+            <Link className="nav-link" href="/authors/favorites">
+              Favorite Authors
             </Link>
           </Nav>
           <Button variant="danger" onClick={signOut}>
