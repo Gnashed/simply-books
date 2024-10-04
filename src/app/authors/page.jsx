@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import Link from 'next/link';
 import { getAuthors } from '../../api/authorData';
 import { useAuth } from '../../utils/context/authContext';
 import AuthorCard from '../../components/AuthorCard';
@@ -20,7 +22,10 @@ export default function Authors() {
 
   return (
     <>
-      <h1>Authors Page</h1>
+      <h1>Authors</h1>
+      <Link href="/authors/new" passHref>
+        <Button>Add author</Button>
+      </Link>
       {authors.map((author) => (
         <AuthorCard key={author.firebaseKey} authorObj={author} />
       ))}
