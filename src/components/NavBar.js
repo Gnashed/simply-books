@@ -27,6 +27,7 @@ export default function NavBar() {
             <Link className="nav-link" href="/authors/favorites">
               Favorite Authors
             </Link>
+            <input className="mr-sm-2" id="search-box" placeholder="Search Book Titles" aria-label="Search" />
           </Nav>
           <Button variant="danger" onClick={signOut}>
             Sign Out
