@@ -1,15 +1,29 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getAuthors } from '../../api/authorData';
 import { useAuth } from '../../utils/context/authContext';
+import AuthorCard from '../../components/AuthorCard';
 
 export default function Authors() {
   const { user } = useAuth();
 
+  const [authors, SetAuthors] = useState([]);
+
+  const getAllAuthors = () => {
+    getAuthors(user.uid).then(SetAuthors);
+  };
+
   useEffect(() => {
-    getAuthors(user.uid);
+    getAllAuthors();
   }, []);
 
-  return <div>Authors Page</div>;
+  return (
+    <>
+      <h1>Authors Page</h1>
+      {authors.map((author) => (
+        <AuthorCard key={author.firebaseKey} authorObj={author} />
+      ))}
+    </>
+  );
 }
