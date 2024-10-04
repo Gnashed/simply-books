@@ -18,7 +18,7 @@ export default function NavBar() {
             <Link className="nav-link" href="/">
               Books
             </Link>
-            <Link className="nav-link" href="/books/sale" passHref>
+            <Link className="nav-link" href="/book/sale" passHref>
               Books on Sale
             </Link>
             <Link className="nav-link" href="/authors">
