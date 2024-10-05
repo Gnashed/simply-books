@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { viewBookDetails } from '@/api/mergedData';
+import { getBookDetails } from '@/api/mergedData';
 import PropTypes from 'prop-types';
 
 export default function ViewBook({ params }) {
@@ -12,7 +12,7 @@ export default function ViewBook({ params }) {
 
   // make call to API layer to get the data
   useEffect(() => {
-    viewBookDetails(firebaseKey).then(setBookDetails);
+    getBookDetails(firebaseKey).then(setBookDetails);
   }, [firebaseKey]);
 
   return (
