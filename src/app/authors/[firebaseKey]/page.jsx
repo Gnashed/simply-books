@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { getAuthorDetails } from '../../../api/mergedData';
+// import BookCard from '../../../components/BookCard';
 
 export default function ViewAuthor({ params }) {
   const { firebaseKey } = params;
@@ -13,6 +14,8 @@ export default function ViewAuthor({ params }) {
   useEffect(() => {
     getAuthorDetails(firebaseKey).then(SetAuthorDetails);
   }, [firebaseKey]);
+
+  const arrayOfBooks = authorDetails.bookObject;
 
   return (
     // eslint-disable-next-line react/no-unescaped-entities
@@ -40,7 +43,12 @@ export default function ViewAuthor({ params }) {
         </button>
       </div>
       <hr />
-      <section id="render-books-here">{}</section>
+      <section id="render-books-here">
+        {/* {arrayOfBooks.map((obj) => (
+          <BookCard key={obj.firebaseKey} bookObj={obj} />
+        ))} */}
+        {console.log(arrayOfBooks)}
+      </section>
     </>
   );
 }
