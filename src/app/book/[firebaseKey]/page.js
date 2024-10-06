@@ -10,7 +10,7 @@ export default function ViewBook({ params }) {
   // grab firebaseKey from url
   const { firebaseKey } = params;
 
-  // make call to API layer to get the data
+  // make call from API layer to get the data
   useEffect(() => {
     getBookDetails(firebaseKey).then(setBookDetails);
   }, [firebaseKey]);
