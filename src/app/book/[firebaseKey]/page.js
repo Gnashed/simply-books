@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { getBookDetails } from '@/api/mergedData';
 import PropTypes from 'prop-types';
+import { getBookDetails } from '../../../api/mergedData';
 
 export default function ViewBook({ params }) {
   const [bookDetails, setBookDetails] = useState({});

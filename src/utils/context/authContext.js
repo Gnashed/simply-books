@@ -3,7 +3,7 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { firebase } from '@/utils/client';
+import { firebase } from '../client';
 
 const AuthContext = createContext();
 
