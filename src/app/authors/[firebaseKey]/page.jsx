@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { getAuthorDetails } from '../../../api/mergedData';
+import { getAuthorDetails, deleteAuthorBooksRelationship } from '../../../api/mergedData';
 import BookCard from '../../../components/BookCard';
 
 export default function ViewAuthor({ params }) {
@@ -41,11 +41,20 @@ export default function ViewAuthor({ params }) {
             Edit
           </button>
         </Link>
-        <button className="btn btn-secondary" type="button">
+        <button
+          className="btn btn-secondary"
+          type="button"
+          onClick={() => {
+            deleteAuthorBooksRelationship(authorDetails.firebaseKey);
+            console.log('Deleted Author and their books.');
+          }}
+        >
           Delete
         </button>
       </div>
+
       <hr />
+
       <section id="render-books-here">
         {authorDetails.bookObject.map((obj) => (
           <BookCard key={obj.firebaseKey} bookObj={obj} onUpdate={getAuthorDetailsHandler} />
