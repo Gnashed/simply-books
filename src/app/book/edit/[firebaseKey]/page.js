@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { getSingleBook } from '@/api/bookData';
 import PropTypes from 'prop-types';
+import { getSingleBook } from '../../../../api/bookData';
 import BookForm from '../../../../components/forms/BookForm';
 
 export default function EditBook({ params }) {
