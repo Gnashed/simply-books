@@ -17,8 +17,8 @@
 // and ensuring that client-side logic is executed only where necessary.
 
 import PropTypes from 'prop-types';
-import { AuthProvider } from '@/utils/context/authContext'; // AuthProvider handles authentication state and must run on the client.
-import ViewDirectorBasedOnUserAuthStatus from '@/utils/context/ViewDirector'; // ViewDirector manages what the user sees based on their authentication status.
+import ViewDirectorBasedOnUserAuthStatus from './ViewDirector'; // ViewDirector manages what the user sees based on their authentication status.
+import { AuthProvider } from './authContext'; // AuthProvider handles authentication state and must run on the client.
 
 function ClientProvider({ children }) {
   return (
