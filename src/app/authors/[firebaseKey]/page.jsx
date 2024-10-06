@@ -4,18 +4,17 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { getAuthorDetails } from '../../../api/mergedData';
-// import BookCard from '../../../components/BookCard';
+import BookCard from '../../../components/BookCard';
 
 export default function ViewAuthor({ params }) {
   const { firebaseKey } = params;
 
-  const [authorDetails, SetAuthorDetails] = useState({});
+  // Since on first render, bookObject (an array) will be undefined. Pass in an empty array.
+  const [authorDetails, SetAuthorDetails] = useState({ bookObject: [] });
 
   useEffect(() => {
     getAuthorDetails(firebaseKey).then(SetAuthorDetails);
   }, [firebaseKey]);
-
-  const arrayOfBooks = authorDetails.bookObject;
 
   return (
     // eslint-disable-next-line react/no-unescaped-entities
@@ -44,10 +43,10 @@ export default function ViewAuthor({ params }) {
       </div>
       <hr />
       <section id="render-books-here">
-        {/* {arrayOfBooks.map((obj) => (
+        {authorDetails.bookObject.map((obj) => (
           <BookCard key={obj.firebaseKey} bookObj={obj} />
-        ))} */}
-        {console.log(arrayOfBooks)}
+        ))}
+        {/* {console.log(arrayOfBooks)} */}
       </section>
     </>
   );
