@@ -2,8 +2,15 @@ import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import { deleteSingleAuthor } from '../api/authorData';
 
-export default function AuthorCard({ authorObj }) {
+export default function AuthorCard({ authorObj, onUpdate }) {
+  const deleteAuthorFromView = () => {
+    if (window.confirm(`Delete ${authorObj.first_name} ${authorObj.last_name}?`)) {
+      deleteSingleAuthor(authorObj.firebaseKey).then(() => onUpdate);
+    }
+  };
+
   return (
     <Card
       style={{
@@ -33,7 +40,9 @@ export default function AuthorCard({ authorObj }) {
         <Link href={`/authors/edit/${authorObj.firebaseKey}`} passHref>
           <Button variant="primary">Edit</Button>
         </Link>
-        <Button variant="danger">Delete</Button>
+        <Button variant="danger" onClick={deleteAuthorFromView}>
+          Delete
+        </Button>
       </Card.Body>
     </Card>
   );
@@ -47,4 +56,5 @@ AuthorCard.propTypes = {
     favorite: PropTypes.bool,
     firebaseKey: PropTypes.string,
   }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
 };
