@@ -19,7 +19,7 @@ export default function BooksOnSalePage() {
     <>
       <h1>Books on Sale</h1>
       {books.map((obj) => (
-        <BookCard bookObj={obj} onUpdate={getAllBooksOnSale} />
+        <BookCard key={obj.firebaseKey} bookObj={obj} onUpdate={getAllBooksOnSale} />
       ))}
     </>
   );
