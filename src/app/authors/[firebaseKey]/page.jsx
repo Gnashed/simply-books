@@ -20,6 +20,13 @@ export default function ViewAuthor({ params }) {
     getAuthorDetailsHandler();
   }, [firebaseKey]);
 
+  const deleteAuthorFromView = () => {
+    if (window.confirm(`Delete ${authorDetails.first_name} ${authorDetails.last_name}?`)) {
+      deleteAuthorBooksRelationship(authorDetails.firebaseKey);
+      console.log('DeleteAuthorFromView Event Triggered!');
+    }
+  };
+
   return (
     // eslint-disable-next-line react/no-unescaped-entities
     <>
@@ -41,14 +48,7 @@ export default function ViewAuthor({ params }) {
             Edit
           </button>
         </Link>
-        <button
-          className="btn btn-secondary"
-          type="button"
-          onClick={() => {
-            deleteAuthorBooksRelationship(authorDetails.firebaseKey);
-            console.log('Deleted Author and their books.');
-          }}
-        >
+        <button className="btn btn-secondary" type="button" onClick={deleteAuthorFromView}>
           Delete
         </button>
       </div>
