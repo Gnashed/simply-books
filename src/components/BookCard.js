@@ -12,7 +12,7 @@ function BookCard({ bookObj, onUpdate }) {
   // SO WE PASS THE FUNCTION FROM THE PARENT THAT GETS THE BOOKS
   const deleteThisBook = () => {
     if (window.confirm(`Delete ${bookObj.title}?`)) {
-      deleteBook(bookObj.firebaseKey).then(() => onUpdate());
+      deleteBook(bookObj.firebaseKey).then(() => onUpdate);
     }
   };
 
