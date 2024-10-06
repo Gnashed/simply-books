@@ -7,7 +7,9 @@ import { deleteSingleAuthor } from '../api/authorData';
 export default function AuthorCard({ authorObj, onUpdate }) {
   const deleteAuthorFromView = () => {
     if (window.confirm(`Delete ${authorObj.first_name} ${authorObj.last_name}?`)) {
-      deleteSingleAuthor(authorObj.firebaseKey).then(() => onUpdate);
+      deleteSingleAuthor(authorObj.firebaseKey).then(() => {
+        onUpdate();
+      });
     }
   };
 

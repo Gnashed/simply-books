@@ -12,8 +12,12 @@ export default function ViewAuthor({ params }) {
   // Since on first render, bookObject (an array) will be undefined. Pass in an empty array.
   const [authorDetails, SetAuthorDetails] = useState({ bookObject: [] });
 
-  useEffect(() => {
+  const getAuthorDetailsHandler = () => {
     getAuthorDetails(firebaseKey).then(SetAuthorDetails);
+  };
+
+  useEffect(() => {
+    getAuthorDetailsHandler();
   }, [firebaseKey]);
 
   return (
@@ -44,7 +48,7 @@ export default function ViewAuthor({ params }) {
       <hr />
       <section id="render-books-here">
         {authorDetails.bookObject.map((obj) => (
-          <BookCard key={obj.firebaseKey} bookObj={obj} />
+          <BookCard key={obj.firebaseKey} bookObj={obj} onUpdate={getAuthorDetailsHandler} />
         ))}
         {/* {console.log(arrayOfBooks)} */}
       </section>
