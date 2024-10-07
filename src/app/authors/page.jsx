@@ -21,14 +21,22 @@ export default function Authors() {
   }, []);
 
   return (
-    <>
-      <h1>Authors</h1>
-      <Link href="/authors/new" passHref>
-        <Button>Add author</Button>
-      </Link>
-      {authors.map((author) => (
-        <AuthorCard key={author.firebaseKey} authorObj={author} onUpdate={getAllAuthors} />
-      ))}
-    </>
+    <div className="text-center">
+      <div className="row mt-3">
+        <h1>Authors</h1>
+      </div>
+
+      <div className="row">
+        <Link href="/authors/new" passHref>
+          <Button className="my-2">Add author</Button>
+        </Link>
+      </div>
+
+      <div className="row my-4">
+        {authors.map((author) => (
+          <AuthorCard key={author.firebaseKey} authorObj={author} onUpdate={getAllAuthors} />
+        ))}
+      </div>
+    </div>
   );
 }

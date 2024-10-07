@@ -16,11 +16,16 @@ export default function BooksOnSalePage() {
   }, []);
 
   return (
-    <>
-      <h1>Books on Sale</h1>
-      {books.map((obj) => (
-        <BookCard key={obj.firebaseKey} bookObj={obj} onUpdate={getAllBooksOnSale} />
-      ))}
-    </>
+    <div className="container">
+      <div className="row text-center">
+        <h1 className="my-3">Books on Sale</h1>
+      </div>
+
+      <div className="row">
+        {books.map((obj) => (
+          <BookCard key={obj.firebaseKey} bookObj={obj} onUpdate={getAllBooksOnSale} />
+        ))}
+      </div>
+    </div>
   );
 }
