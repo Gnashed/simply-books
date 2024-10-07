@@ -18,8 +18,8 @@ export default function FavoriteAuthors() {
   }, []);
 
   return (
-    <div className="container">
-      <div className="row">
+    <div className="container text-center">
+      <div className="row my-4">
         <h1>Favorite Authors</h1>
       </div>
 
