@@ -18,11 +18,16 @@ export default function FavoriteAuthors() {
   }, []);
 
   return (
-    <>
-      <h1>Favorite Authors</h1>
-      {favAuthors.map((favoriteAuthorObj) => (
-        <AuthorCard key={favoriteAuthorObj.firebaseKey} authorObj={favoriteAuthorObj} />
-      ))}
-    </>
+    <div className="container">
+      <div className="row">
+        <h1>Favorite Authors</h1>
+      </div>
+
+      <div className="row">
+        {favAuthors.map((favoriteAuthorObj) => (
+          <AuthorCard key={favoriteAuthorObj.firebaseKey} authorObj={favoriteAuthorObj} />
+        ))}
+      </div>
+    </div>
   );
 }

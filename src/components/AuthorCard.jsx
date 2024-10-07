@@ -16,9 +16,10 @@ export default function AuthorCard({ authorObj, onUpdate }) {
   return (
     <Card
       style={{
-        width: '20rem',
+        width: '16.75rem',
         height: 'auto',
       }}
+      className="mt-2 mb-4 mx-2"
     >
       <Card.Body>
         <Card.Title>
