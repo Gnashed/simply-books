@@ -55,49 +55,53 @@ function AuthorForm({ obj = initialFormState }) {
   };
 
   return (
-    <>
-      <h1>Author Form</h1>
+    <div className="container text-center">
+      <div className="row">
+        <h1>Author Form</h1>
+      </div>
 
-      <Form onSubmit={handleSubmit}>
-        {/* TODO: Each Form.Control needs an onChange attribute. Pass in handleChange as a callback. */}
-        <Form.Group className="mb-3" controlId="">
-          <Form.Label>First name</Form.Label>
-          <Form.Control type="textbox" placeholder="John" name="first_name" value={formInput.first_name || ''} onChange={handleChange} required />
-          <Form.Text className="text-muted">required</Form.Text>
-        </Form.Group>
+      <div className="row" style={{ width: '70%' }}>
+        <Form onSubmit={handleSubmit} className="d-flex flex-column text-center">
+          {/* TODO: Each Form.Control needs an onChange attribute. Pass in handleChange as a callback. */}
+          <Form.Group className="mb-3" controlId="">
+            <Form.Label>First name</Form.Label>
+            <Form.Control type="textbox" placeholder="John" name="first_name" value={formInput.first_name || ''} onChange={handleChange} required />
+            <Form.Text className="text-muted">required</Form.Text>
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="">
-          <Form.Label>Last name</Form.Label>
-          <Form.Control type="textbox" placeholder="Doe" name="last_name" value={formInput.last_name || ''} onChange={handleChange} required />
-          <Form.Text className="text-muted">required</Form.Text>
-        </Form.Group>
+          <Form.Group className="mb-3" controlId="">
+            <Form.Label>Last name</Form.Label>
+            <Form.Control type="textbox" placeholder="Doe" name="last_name" value={formInput.last_name || ''} onChange={handleChange} required />
+            <Form.Text className="text-muted">required</Form.Text>
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="">
-          <Form.Label>Email</Form.Label>
-          <Form.Control type="email" placeholder="johndoe@simplybooks.dev" name="email" value={formInput.email || ''} onChange={handleChange} required />
-          <Form.Text className="text-muted">required</Form.Text>
-        </Form.Group>
+          <Form.Group className="mb-3" controlId="">
+            <Form.Label>Email</Form.Label>
+            <Form.Control type="email" placeholder="johndoe@simplybooks.dev" name="email" value={formInput.email || ''} onChange={handleChange} required />
+            <Form.Text className="text-muted">required</Form.Text>
+          </Form.Group>
 
-        <Form.Check
-          className="text-white mb-3"
-          type="switch"
-          id="favorite"
-          name="favorite"
-          label="Favorite"
-          checked={formInput.favorite || false}
-          onChange={(e) => {
-            SetFormInput((prevState) => ({
-              ...prevState,
-              favorite: e.target.checked,
-            }));
-          }}
-        />
+          <Form.Check
+            className="text-white mb-3"
+            type="switch"
+            id="favorite"
+            name="favorite"
+            label="Favorite"
+            checked={formInput.favorite || false}
+            onChange={(e) => {
+              SetFormInput((prevState) => ({
+                ...prevState,
+                favorite: e.target.checked,
+              }));
+            }}
+          />
 
-        <button className="btn btn-primary" type="submit">
-          {obj.firebaseKey ? 'Update' : 'Create'} Author
-        </button>
-      </Form>
-    </>
+          <button className="btn btn-primary" type="submit">
+            {obj.firebaseKey ? 'Update' : 'Create'} Author
+          </button>
+        </Form>
+      </div>
+    </div>
   );
 }
 
