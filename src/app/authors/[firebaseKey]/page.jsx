@@ -3,11 +3,16 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { getAuthorDetails, deleteAuthorBooksRelationship } from '../../../api/mergedData';
 import BookCard from '../../../components/BookCard';
+// import { useAuth } from '../../../utils/context/authContext';
 
 export default function ViewAuthor({ params }) {
   const { firebaseKey } = params;
+  const router = useRouter();
+
+  // const { user } = useAuth();
 
   // Since on first render, bookObject (an array) will be undefined. Pass in an empty array.
   const [authorDetails, SetAuthorDetails] = useState({ bookObject: [] });
@@ -20,10 +25,12 @@ export default function ViewAuthor({ params }) {
     getAuthorDetailsHandler();
   }, [firebaseKey]);
 
-  const deleteAuthorFromView = () => {
+  const deleteAuthorRelationshipFromView = () => {
     if (window.confirm(`Delete ${authorDetails.first_name} ${authorDetails.last_name}?`)) {
-      deleteAuthorBooksRelationship(authorDetails.firebaseKey);
-      console.log('DeleteAuthorFromView Event Triggered!');
+      deleteAuthorBooksRelationship(authorDetails.firebaseKey).then(() => {
+        router.push('/authors');
+        // console.log('DeleteAuthorFromView Event Triggered!');
+      });
     }
   };
 
@@ -48,7 +55,7 @@ export default function ViewAuthor({ params }) {
             Edit
           </button>
         </Link>
-        <button className="btn btn-secondary" type="button" onClick={deleteAuthorFromView}>
+        <button className="btn btn-secondary" type="button" onClick={deleteAuthorRelationshipFromView}>
           Delete
         </button>
       </div>
