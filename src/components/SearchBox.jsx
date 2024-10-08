@@ -1,27 +1,40 @@
 'use client';
 
-import React, { useState } from 'react';
-// import { searchBooks } from '../api/bookData';
+import React, { useEffect, useState } from 'react';
+import { searchBooks } from '../api/bookData';
+import BookCard from './BookCard';
 
 export default function SearchBox() {
-  const [formInputs, SetFormInputs] = useState('');
+  // eslint-disable-next-line no-unused-vars
+  const [formInput, SetFormInput] = useState('');
+  const [filteredBooks, SetFilteredBooks] = useState([]);
+  const [books, SetBooks] = useState([]);
 
+  // Once the page loads, we'll have access to the books filtered by title.
+  useEffect(() => {
+    // Update the books state with the filterd books from our API call.
+    searchBooks().then(SetBooks);
+  }, []);
+
+  // As the user add more characters to the form, update the state value, store the filtered array after comparing it formInput, then update the filteredBooks state with the search results.
   const handleChange = (e) => {
-    // Destructure name and value from the event object, target it.
-    const { name, value } = e.target;
-    // Update the state of formInputs. Pass in a param inside the callback. That param represent the previous state.
-    SetFormInputs((prevState) => ({
-      // We're combining the previous keystrokes with the next keystroke entered by the user.
-      ...prevState,
-      [name]: value,
-    }));
-    // console.log(name, value);
-    console.log(formInputs);
+    const userInput = e.target.value;
+    SetFormInput(userInput);
+    const results = books.filter((book) => book.title.toLowerCase().includes(userInput.toLowerCase()));
+    SetFilteredBooks(results);
   };
 
   return (
-    <form>
+    <>
       <input className="mt-2" id="search-box" name="search-box" placeholder="Search book titles" aria-label="Search" style={{ height: '1.40rem' }} onChange={handleChange} />
-    </form>
+
+      <ul>
+        {filteredBooks.map((book) => (
+          <li key={book.firebaseKey}>
+            <BookCard bookObj={book} />
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }

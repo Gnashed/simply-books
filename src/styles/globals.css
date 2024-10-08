@@ -3,3 +3,7 @@ body {
   color: white;
   height: 100vh;
 }
+
+ul {
+  list-style-type: none;
+}
