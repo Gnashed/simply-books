@@ -17,6 +17,8 @@ Useful Tools:
 -> https://mockaroo.com/ for setting up mock data.
 
 ## Get Started
+Link to deployed project ---- https://simplybooks-tb.netlify.app/
+
 For user, please sign in using Google for authentication purposes. Once authenticated, you can start managing your book collection!
 
 For those wanting to experiment with the project using your technical skills, feel free to clone the project.
