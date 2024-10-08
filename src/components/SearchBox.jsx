@@ -21,7 +21,13 @@ export default function SearchBox() {
     const userInput = e.target.value;
     SetFormInput(userInput);
     const results = books.filter((book) => book.title.toLowerCase().includes(userInput.toLowerCase()));
-    SetFilteredBooks(results);
+
+    if (userInput === '') {
+      // console.log("nothing here, chief!");
+      SetFilteredBooks([]);
+    } else {
+      SetFilteredBooks(results);
+    }
   };
 
   return (

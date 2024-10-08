@@ -28,6 +28,7 @@ export default function NavBar() {
             <Link className="nav-link" href="/authors/favorites">
               Favorite Authors
             </Link>
+
             <SearchBox />
           </Nav>
           <Button variant="danger" onClick={signOut}>
